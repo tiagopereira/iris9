@@ -1,0 +1,746 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>4. Python Tutorials &mdash; IRIS-9 Data Analysis Tutorials</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="IRIS-9 Data Analysis Tutorials" href="index.html"/>
+        <link rel="prev" title="3. IDL Tutorials" href="tutorials_idl.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        <a href="index.html" class="fa fa-home"> IRIS-9 Data Analysis Tutorials</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">1. Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut_prep.html">2. Tutorial preparation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tut_prep.html#idl-setup">2.1. IDL Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tut_prep.html#python-setup">2.2. Python Setup</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials_idl.html">3. IDL Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorials_idl.html#iris-xfiles">3.1. IRIS xfiles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials_idl.html#mg-ii-dopplergrams">3.2. Mg II Dopplergrams</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials_idl.html#crispex">3.3. CRISPEX</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">4. Python Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#Mg-II-Dopplergrams">4.1. Mg II Dopplergrams</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Flare-4-step-raster:-SJI-and-spectrograph">4.2. Flare 4-step raster: SJI and spectrograph</a></li>
+</ul>
+</li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">IRIS-9 Data Analysis Tutorials</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>4. Python Tutorials</li>
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput,
+div.nbinput div.prompt,
+div.nbinput div.input_area,
+div.nbinput div[class*=highlight],
+div.nbinput div[class*=highlight] pre,
+div.nboutput,
+div.nbinput div.prompt,
+div.nbinput div.output_area,
+div.nboutput div[class*=highlight],
+div.nboutput div[class*=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* avoid gaps between output lines */
+div.nboutput div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput,
+div.nboutput {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput,
+    div.nboutput {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput div.prompt pre {
+    color: #303F9F;
+}
+
+/* output prompt */
+div.nboutput div.prompt pre {
+    color: #D84315;
+}
+
+/* all prompts */
+div.nbinput div.prompt,
+div.nboutput div.prompt {
+    min-width: 8ex;
+    padding-top: 0.4em;
+    padding-right: 0.4em;
+    text-align: right;
+    flex: 0;
+}
+@media (max-width: 540px) {
+    div.nbinput div.prompt,
+    div.nboutput div.prompt {
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput div.prompt.empty {
+        padding: 0;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput div.prompt pre,
+div.nboutput div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput div.input_area,
+div.nboutput div.output_area {
+    padding: 0.4em;
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput div.input_area,
+    div.nboutput div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput div.input_area {
+    border: 1px solid #cfcfcf;
+    border-radius: 2px;
+    background: #f7f7f7;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.pngmath center alignment in output cells */
+div.nboutput div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast,
+.nboutput.nblast {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast + .nbinput {
+    margin-top: -19px;
+}
+
+/* nice headers on first paragraph of info/warning boxes */
+.admonition .first {
+    margin: -12px;
+    padding: 6px 12px;
+    margin-bottom: 12px;
+    color: #fff;
+    line-height: 1;
+    display: block;
+}
+.admonition.warning .first {
+    background: #f0b37e;
+}
+.admonition.note .first {
+    background: #6ab0de;
+}
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+</style>
+<div class="section" id="Python-Tutorials">
+<h1>4. Python Tutorials<a class="headerlink" href="#Python-Tutorials" title="Permalink to this headline">¶</a></h1>
+<p>These tutorials are written in Jupyter, but you can also run them in
+<code class="docutils literal notranslate"><span class="pre">ipython</span></code> if you prefer. For Jupyter, we need to set the options
+below, but if you are running only <code class="docutils literal notranslate"><span class="pre">ipython</span></code>, instead of
+<code class="docutils literal notranslate"><span class="pre">%matplotlib</span> <span class="pre">inline</span></code> try using <code class="docutils literal notranslate"><span class="pre">%matplotlib</span> <span class="pre">qt5</span></code> or
+<code class="docutils literal notranslate"><span class="pre">%matplotlib</span> <span class="pre">osx</span></code>, depending on your system.</p>
+<p>You should start Python in the directory where you have the IRIS-9 data
+(e.g. <code class="docutils literal notranslate"><span class="pre">~/iris9/</span></code> as we defined earlier).</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">astropy.io.fits</span> <span class="kn">as</span> <span class="nn">fits</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">astropy.wcs</span> <span class="kn">import</span> <span class="n">WCS</span>
+<span class="c1"># Set up some default matplotlib options</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.figsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;xtick.direction&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;out&#39;</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;image.origin&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;lower&#39;</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;image.cmap&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;viridis&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="Mg-II-Dopplergrams">
+<h2>4.1. Mg II Dopplergrams<a class="headerlink" href="#Mg-II-Dopplergrams" title="Permalink to this headline">¶</a></h2>
+<p>In this tutorial we are going to produce a Dopplergram for the Mg II k
+line from an IRIS 400-step raster. The Dopplergram is obtained by
+subtracting the intensities at symmetrical velocity shifts from the line
+core (e.g. ±50 km/s). For this kind of analysis we need a consistent
+wavelength calibration for each step of the raster.</p>
+<p>This very large dense raster took more than three hours to complete the
+400 scans (30 s exposures), which means that the spacecraft’s orbital
+velocity changes during the observations. This means that any precise
+wavelength calibration will need to correct for those shifts.</p>
+<p>Let’s open the file:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">iris_file</span> <span class="o">=</span> <span class="n">fits</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;iris_l2_20140708_114109_3824262996_raster_t000_r00000.fits&quot;</span><span class="p">,</span>
+                 <span class="n">memmap</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">do_not_scale_image_data</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>Here we use <code class="docutils literal notranslate"><span class="pre">memmap</span></code> to save memory.</p>
+<p>We can now print out the spectral windows in the file:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">hd</span> <span class="o">=</span> <span class="n">iris_file</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">header</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;Window. Name      : wave start - wave end</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">hd</span><span class="p">[</span><span class="s1">&#39;NWIN&#39;</span><span class="p">]):</span>
+    <span class="n">win</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;{0}. {1:15}: {2:.2f} - {3:.2f} Å&#39;</span>
+          <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">win</span><span class="p">,</span> <span class="n">hd</span><span class="p">[</span><span class="s1">&#39;TDESC&#39;</span> <span class="o">+</span> <span class="n">win</span><span class="p">],</span> <span class="n">hd</span><span class="p">[</span><span class="s1">&#39;TWMIN&#39;</span> <span class="o">+</span> <span class="n">win</span><span class="p">],</span> <span class="n">hd</span><span class="p">[</span><span class="s1">&#39;TWMAX&#39;</span> <span class="o">+</span> <span class="n">win</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Window. Name      : wave start - wave end
+
+1. C II 1336      : 1332.70 - 1337.58 Å
+2. Fe XII 1349    : 1347.68 - 1350.90 Å
+3. O I 1356       : 1352.25 - 1356.69 Å
+4. Si IV 1394     : 1390.90 - 1396.19 Å
+5. Si IV 1403     : 1398.63 - 1406.34 Å
+6. 2832           : 2831.23 - 2834.26 Å
+7. 2814           : 2812.54 - 2816.41 Å
+8. Mg II k 2796   : 2792.98 - 2806.63 Å
+</pre></div></div>
+</div>
+<p>We see that Mg II is in window 8, so let’s load those data and get the
+WCS information to construct the wavelength arrays and get coordinates:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">data</span> <span class="o">=</span> <span class="n">iris_file</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
+<span class="n">wcs</span> <span class="o">=</span> <span class="n">WCS</span><span class="p">(</span><span class="n">iris_file</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span><span class="o">.</span><span class="n">header</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>And let’s calculate the wavelength array:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">m_to_nm</span> <span class="o">=</span> <span class="mf">1e9</span>  <span class="c1"># convert wavelength to nm</span>
+<span class="n">wave</span> <span class="o">=</span> <span class="n">wcs</span><span class="o">.</span><span class="n">all_pix2world</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">wcs</span><span class="o">.</span><span class="n">_naxis</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="p">[</span><span class="mf">0.</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.</span><span class="p">],</span> <span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">m_to_nm</span>
+</pre></div>
+</div>
+</div>
+<p>We can see how the the spatially averaged spectrum looks like:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">wave</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">mean</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>Out[6]:
+</pre></div>
+</div>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>[&lt;matplotlib.lines.Line2D at 0xa80fe2128&gt;]
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/tutorials_python_11_1.png" src="_images/tutorials_python_11_1.png" />
+</div>
+</div>
+<p>Because we used <code class="docutils literal notranslate"><span class="pre">memmap</span></code>, the intensity values are unscaled and do not
+represent the IRIS data number (DN). For the purposes of this tutorial
+this is not a problem.</p>
+<p>To better understand the orbital velocity problem let us look at how the
+line intensity varies for a strong Mn I line at around 280.2 nm, in
+between the Mg II k and h lines. For this dataset, the line core of this
+line falls around index 350. To plot a spectroheliogram in the correct
+orientation we will transpose the data:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="mi">350</span><span class="p">]</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="mi">32000</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=-</span><span class="mi">31600</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>Out[7]:
+</pre></div>
+</div>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>&lt;matplotlib.image.AxesImage at 0xa8114ffd0&gt;
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/tutorials_python_14_1.png" src="_images/tutorials_python_14_1.png" />
+</div>
+</div>
+<p>You can see a regular bright-dark pattern along the x axis, an
+indication that its intensities are not taken at the same position in
+the line because of wavelength shifts. The shifts are caused by the
+orbital velocity changes, and we can find these in the auxiliary
+metadata:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">aux</span> <span class="o">=</span> <span class="n">iris_file</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">v_obs</span> <span class="o">=</span> <span class="n">aux</span><span class="o">.</span><span class="n">data</span><span class="p">[:,</span> <span class="n">aux</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="s1">&#39;OBS_VRIX&#39;</span><span class="p">]]</span>
+<span class="n">v_obs</span> <span class="o">/=</span> <span class="mf">1000.</span>  <span class="c1"># convert to km/s</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">v_obs</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Orbital velocity (km/s)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Scan number&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>Out[8]:
+</pre></div>
+</div>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>Text(0.5,0,&#39;Scan number&#39;)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/tutorials_python_16_1.png" src="_images/tutorials_python_16_1.png" />
+</div>
+</div>
+<p>To look at intensities at any given scan we only need to subtract this
+velocity shift from the wavelength scale, but to look at the whole image
+at a given wavelength we must interpolate the original data to take this
+shift into account. Here is a way to do it (note that array dimensions
+apply to this specific set only!):</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">scipy.constants</span> <span class="kn">import</span> <span class="n">c</span>
+<span class="kn">from</span> <span class="nn">scipy.interpolate</span> <span class="kn">import</span> <span class="n">interp1d</span>
+<span class="n">c_kms</span> <span class="o">=</span> <span class="n">c</span> <span class="o">/</span> <span class="mf">1000.</span>
+<span class="n">wave_shift</span> <span class="o">=</span> <span class="o">-</span> <span class="n">v_obs</span> <span class="o">*</span> <span class="n">wave</span><span class="p">[</span><span class="mi">350</span><span class="p">]</span> <span class="o">/</span> <span class="p">(</span><span class="n">c_kms</span><span class="p">)</span>
+<span class="c1"># linear interpolation in wavelength, for each scan</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">iris_file</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="s1">&#39;NRASTERP&#39;</span><span class="p">]):</span>
+    <span class="n">tmp</span> <span class="o">=</span> <span class="n">interp1d</span><span class="p">(</span><span class="n">wave</span> <span class="o">-</span> <span class="n">wave_shift</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">bounds_error</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">(</span><span class="n">wave</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>And now we can plot the shifted data to see that the large scale shifts
+have disappeared:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="mi">350</span><span class="p">]</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="mi">32000</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=-</span><span class="mi">31600</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>Out[10]:
+</pre></div>
+</div>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>&lt;matplotlib.image.AxesImage at 0xa82540278&gt;
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/tutorials_python_20_1.png" src="_images/tutorials_python_20_1.png" />
+</div>
+</div>
+<p>Some residual shift remains, but we will not correct for it here. A more
+elaborate correction can be obtained by the IDL routine
+<code class="docutils literal notranslate"><span class="pre">iris_prep_wavecorr_l2</span></code>, but this has not yet been ported to Python
+see the <a class="reference external" href="http://iris.lmsal.com/itn26/tutorials.html#mg-ii-dopplergrams">IDL version of this
+tutorial</a>
+for more details.</p>
+<p>We can use the calibrated data for example to calculate Dopplergrams. A
+Dopplergram is here defined as the difference between the intensities at
+two wavelength positions at the same (and opposite) distance from the
+line core. For example, at +/- 50 km/s from the Mg II k3 core. To do
+this, let us first calculate a velocity scale for the k line and find
+the indices of the -50 and +50 km/s velocity positions (here using the
+convention of negative velocities for up flows):</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">mg_k_centre</span> <span class="o">=</span> <span class="mf">279.63521</span>  <span class="c1"># in nm</span>
+<span class="n">pos</span> <span class="o">=</span> <span class="mi">50</span>  <span class="c1"># in km/s around line centre</span>
+<span class="n">velocity</span> <span class="o">=</span>  <span class="p">(</span><span class="n">wave</span> <span class="o">-</span> <span class="n">mg_k_centre</span><span class="p">)</span> <span class="o">*</span> <span class="n">c_kms</span> <span class="o">/</span> <span class="n">mg_k_centre</span>
+<span class="n">index_p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">velocity</span> <span class="o">-</span> <span class="n">pos</span><span class="p">))</span>
+<span class="n">index_m</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">velocity</span> <span class="o">+</span> <span class="n">pos</span><span class="p">))</span>
+<span class="n">doppl</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">index_m</span><span class="p">]</span> <span class="o">-</span> <span class="n">data</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">index_p</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<p>And now we can plot this as before (intensity units are again arbitrary
+because of the unscaled DNs):</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">doppl</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gist_gray&#39;</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+           <span class="n">vmin</span><span class="o">=-</span><span class="mi">700</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">700</span><span class="p">,)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>Out[12]:
+</pre></div>
+</div>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>&lt;matplotlib.image.AxesImage at 0xa82bf4908&gt;
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/tutorials_python_24_1.png" src="_images/tutorials_python_24_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="Flare-4-step-raster:-SJI-and-spectrograph">
+<h2>4.2. Flare 4-step raster: SJI and spectrograph<a class="headerlink" href="#Flare-4-step-raster:-SJI-and-spectrograph" title="Permalink to this headline">¶</a></h2>
+<p>This exercise will be solved mostly by the participants. The <a class="reference external" href="https://folk.uio.no/tiago/teaching/ipylow">low-level
+guide to IRIS with Python</a>
+will serve as a reference for most of the tasks necessary to complete
+this exercise.</p>
+<p>In this exercise we will combine the slit-jaw and spectrograph images
+taken during a small flare. The data are from 2014-11-07, with file
+names <code class="docutils literal notranslate"><span class="pre">iris_l2_20141107_160734_3860258971_*</span></code>. The programme was a
+4-step raster, and there are 80 repeats. In the files provided there is
+only the 2796 slit-jaw.</p>
+<p>Start by loading the slit-jaw file and then do the following:</p>
+<ul class="simple">
+<li>Find out what is the timestep at <code class="docutils literal notranslate"><span class="pre">2014-11-07T16:19:07.800</span></code>.
+Remember that just like in the raster files, the array with times is
+saved in the second to last extension of the SJI fits files. Plot the
+SJI image at that timestep, in solar (x, y) coordinates in arcsec.</li>
+<li>Did the exposure time vary for this slit-jaw file? Ie, was the Auto
+Exposure Compensation (AEC) triggered? Check the second to last
+extension in the file, the data column number for exposure times is
+saved in the keyword <code class="docutils literal notranslate"><span class="pre">EXPTIMES</span></code> in the second to last extension.</li>
+<li>Check what is the closest raster file for the time of
+<code class="docutils literal notranslate"><span class="pre">2014-11-07T16:19:07.800</span></code>. Load that file, and check the spectra
+for the window <code class="docutils literal notranslate"><span class="pre">Si</span> <span class="pre">IV</span> <span class="pre">1403</span></code>. Was the exposure saturated at any
+position?</li>
+<li>Get the solar y coordinates (in arcsec) of the slit using the WCS
+information in the header of the loaded raster file. Hint 1: this can
+be obtained in a similar way as we obtain the wavelength from the WCS
+header, but for the y coordinate we need to get the second WCS
+coordinate, e.g.:
+<code class="docutils literal notranslate"><span class="pre">y</span> <span class="pre">=</span> <span class="pre">wcs.all_pix2world([0.],</span> <span class="pre">np.arange(N_PIX_SLIT),</span> <span class="pre">[0.],</span> <span class="pre">0)[1]</span></code>.
+Hint 2: note that astropy’s WCS internally uses degrees as unit for
+the radial coordinates. If you just print the wcs object, you will
+see that in this case that <code class="docutils literal notranslate"><span class="pre">CRVAL[2]</span> <span class="pre">=</span> <span class="pre">-0.1672825</span></code> (in degrees),
+which is about -10’ (you can also check this in the SJI plot).</li>
+<li>You can now put everything together and make an image plot
+(<code class="docutils literal notranslate"><span class="pre">imshow</span></code>) of the <code class="docutils literal notranslate"><span class="pre">Si</span> <span class="pre">IV</span> <span class="pre">1403</span></code>, using the solar y scale on the y
+axis and the wavelength scale on the x axis, for any of the raster
+positions. To do this you supply the keyword argument <code class="docutils literal notranslate"><span class="pre">extent</span></code> to
+<code class="docutils literal notranslate"><span class="pre">imshow</span></code>, e.g.:
+<code class="docutils literal notranslate"><span class="pre">extent=[wavelength.min(),</span> <span class="pre">wavelength.max(),</span> <span class="pre">y.min(),</span> <span class="pre">y.max()]</span></code>.
+The results should be something like:</li>
+</ul>
+<div class="figure" id="id1">
+<img alt="Si IV 1403" src="_images/SiIV1403.png" />
+<p class="caption"><span class="caption-text">Si IV 1403</span></p>
+</div>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="tutorials_idl.html" class="btn btn-neutral" title="3. IDL Tutorials"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+    </p>
+  </div>
+
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

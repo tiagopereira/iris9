@@ -1,0 +1,65 @@
+********************
+Tutorial preparation
+********************
+
+These tutorials comprise step-by-step instructions and exercises to perform some tasks with IRIS data. As time allows, these will be done by participants in the tutorial session. Most of these tutorials are also included in `section 8 <http://iris.lmsal.com/itn26/tutorials.html>`_ of the User's Guide to IRIS Data Analysis (`ITN 26 <http://iris.lmsal.com/itn26>`_).
+
+.. warning::
+   Several of the tutorials (in particular CRISPEX) require a minimum of 4 Gb of RAM, and a 64-bit version of IDL or Python. If you have 4 Gb of RAM or more, make sure you have a 64-bit version of IDL or Python. If you have less than 4 Gb of RAM, please sit next to someone that has such a laptop so you can work in groups. To check if your IDL is 64-bit, start IDL from the command line and look for the first line, eg: ``IDL Version 8.5 (linux x86_64 m64)`` (if it was 32-bit, it would say ``x86_32 m32``).
+
+
+The data files for these tutorials can be downloaded from https://folk.uio.no/tiago/iris9_files.tar, and will also be distributed on the day for those that did not download them. This file contains several datasets from IRIS. Throughout the tutorials it is assumed that this file is unpacked into a directory in your home directory named ``iris9/``. If you want to use a different directory, just replace the name when necessary.
+
+.. note::
+   The data file is 1.8 GB. If you can, please download it before the workshop (or copy from someone) it to prevent any network bottlenecks at the workshop.
+
+.. warning::
+   The data file upacks to about 4 Gb in size. Please make sure you have at least 6 Gb of free disk space to keep all the data and temporary files. Unpacking will take about 5-15 minutes.
+
+To start, create a directory called ``iris9`` and unpack all the files in there. In the Unix terminal, you can do it like this::
+
+    $ mkdir ~/iris9
+    $ tar xvf iris9_files.tar -C ~/iris9
+    $ cd ~/iris9
+    $ gunzip *.gz
+    $ find . -name '*tar' -exec tar xvf {} \;
+    (...)
+
+This will put all the files in the same directory.
+
+IDL Setup
+=========
+
+You will need to make sure that you have an up-to-date version of `SolarSoft IDL <http://www.lmsal.com/solarsoft/>`_ with the IRIS branch.
+
+If you already have SolarSoft installed, you just need to make sure to have the IRIS branch installed and include ``iris`` in the ``SSW_INSTR`` environment variable, e.g.::
+
+    setenv SSW_INSTR "sot iris ontology"
+
+It is outside the scope of these tutorials to help you install and configure SolarSoft. If you don't have it already in your system we provide a tar file with a minimal version that can be used to run the tutorials. To install it, download the file http://www.lmsal.com/~mgosic/v1/ssw.zip  (168 MB) and unpack it to your home directory::
+
+    $ cp ssw.zip ~/iris9
+    $ cd ~/iris9
+    $ unzip ssw.zip
+    $ export IRIS_DATA=$HOME/iris9
+    $ export SSW_IDL=$HOME/iris9/ssw
+
+After that, you can start `idl` (not `sswidl`) and type the following::
+
+    IDL> !PATH = Expand_Path('+$SSW_IDL') + ':' + !PATH
+    IDL> imagelib
+    IDL> devicelib
+
+If all went well you have SolarSoft working and are ready to run the tutorials!
+
+If you have your own installation of SolarSoft, start it as usual with ``sswidl``.
+
+Python Setup
+============
+
+If you want to run the Python tutorials, you need to have the following packages: ``numpy``, ``scipy``, ``matplotlib``, ``ipython``, and ``astropy``. The recommended way is to install the `Anaconda Python Distribution <https://www.anaconda.com/download>`_ (for Python 3.x, 64-bit version) and then running this command to ensure you have all the packages installed::
+
+    $ conda install numpy scipy matplotlib ipython astropy
+
+.. note::
+   The Python tutorials are much shorter than the IDL versions, because many of the IRIS tools are not yet available in Python.

@@ -1,0 +1,9 @@
+************
+Introduction
+************
+
+These tutorials were prepared for the IRIS-9 Workshop taking place in Göttingen in June 2018. They are meant to be a guided starting point to data exploration and analysis with IRIS. The tutorials provide lists and descriptions of a few basic tasks, on which the participants are encouraged to build on and explore further.
+
+Tutorials are available in both IDL and Python. The IDL tutorials are longer and involve the use of many tools developed during the IRIS mission. Most tools developed for IRIS lack a Python equivalent, and therefore the Python tutorials are shorter and only meant to be a quick introduction.
+
+A more comprehensive description on how to use the IRIS IDL tools can be found on `ITN 26 <http://iris.lmsal.com/itn26>`_ or at the `IRIS documentation <http://iris.lmsal.com/documents.html>`_. There is also a `low-level guide to IRIS with Python <https://folk.uio.no/tiago/teaching/ipylow/>`_, on which the Python tutorials are based.

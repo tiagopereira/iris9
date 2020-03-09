@@ -1,0 +1,275 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>2. Tutorial preparation &mdash; IRIS-9 Data Analysis Tutorials</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="IRIS-9 Data Analysis Tutorials" href="index.html"/>
+        <link rel="next" title="3. IDL Tutorials" href="tutorials_idl.html"/>
+        <link rel="prev" title="1. Introduction" href="introduction.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        <a href="index.html" class="fa fa-home"> IRIS-9 Data Analysis Tutorials</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">1. Introduction</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">2. Tutorial preparation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#idl-setup">2.1. IDL Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#python-setup">2.2. Python Setup</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials_idl.html">3. IDL Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorials_idl.html#iris-xfiles">3.1. IRIS xfiles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials_idl.html#mg-ii-dopplergrams">3.2. Mg II Dopplergrams</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials_idl.html#crispex">3.3. CRISPEX</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials_python.html">4. Python Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorials_python.html#Mg-II-Dopplergrams">4.1. Mg II Dopplergrams</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials_python.html#Flare-4-step-raster:-SJI-and-spectrograph">4.2. Flare 4-step raster: SJI and spectrograph</a></li>
+</ul>
+</li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">IRIS-9 Data Analysis Tutorials</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>2. Tutorial preparation</li>
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast,
+.nboutput.nblast {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast + .nbinput {
+    margin-top: -19px;
+}
+
+/* nice headers on first paragraph of info/warning boxes */
+.admonition .first {
+    margin: -12px;
+    padding: 6px 12px;
+    margin-bottom: 12px;
+    color: #fff;
+    line-height: 1;
+    display: block;
+}
+.admonition.warning .first {
+    background: #f0b37e;
+}
+.admonition.note .first {
+    background: #6ab0de;
+}
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+</style>
+<div class="section" id="tutorial-preparation">
+<h1>2. Tutorial preparation<a class="headerlink" href="#tutorial-preparation" title="Permalink to this headline">¶</a></h1>
+<p>These tutorials comprise step-by-step instructions and exercises to perform some tasks with IRIS data. As time allows, these will be done by participants in the tutorial session. Most of these tutorials are also included in <a class="reference external" href="http://iris.lmsal.com/itn26/tutorials.html">section 8</a> of the User’s Guide to IRIS Data Analysis (<a class="reference external" href="http://iris.lmsal.com/itn26">ITN 26</a>).</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Several of the tutorials (in particular CRISPEX) require a minimum of 4 Gb of RAM, and a 64-bit version of IDL or Python. If you have 4 Gb of RAM or more, make sure you have a 64-bit version of IDL or Python. If you have less than 4 Gb of RAM, please sit next to someone that has such a laptop so you can work in groups. To check if your IDL is 64-bit, start IDL from the command line and look for the first line, eg: <code class="docutils literal notranslate"><span class="pre">IDL</span> <span class="pre">Version</span> <span class="pre">8.5</span> <span class="pre">(linux</span> <span class="pre">x86_64</span> <span class="pre">m64)</span></code> (if it was 32-bit, it would say <code class="docutils literal notranslate"><span class="pre">x86_32</span> <span class="pre">m32</span></code>).</p>
+</div>
+<p>The data files for these tutorials can be downloaded from <a class="reference external" href="https://folk.uio.no/tiago/iris9_files.tar">https://folk.uio.no/tiago/iris9_files.tar</a>, and will also be distributed on the day for those that did not download them. This file contains several datasets from IRIS. Throughout the tutorials it is assumed that this file is unpacked into a directory in your home directory named <code class="docutils literal notranslate"><span class="pre">iris9/</span></code>. If you want to use a different directory, just replace the name when necessary.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The data file is 1.8 GB. If you can, please download it before the workshop (or copy from someone) it to prevent any network bottlenecks at the workshop.</p>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">The data file upacks to about 4 Gb in size. Please make sure you have at least 6 Gb of free disk space to keep all the data and temporary files. Unpacking will take about 5-15 minutes.</p>
+</div>
+<p>To start, create a directory called <code class="docutils literal notranslate"><span class="pre">iris9</span></code> and unpack all the files in there. In the Unix terminal, you can do it like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mkdir ~/iris9
+$ tar xvf iris9_files.tar -C ~/iris9
+$ cd ~/iris9
+$ gunzip *.gz
+$ find . -name &#39;*tar&#39; -exec tar xvf {} \;
+(...)
+</pre></div>
+</div>
+<p>This will put all the files in the same directory.</p>
+<div class="section" id="idl-setup">
+<h2>2.1. IDL Setup<a class="headerlink" href="#idl-setup" title="Permalink to this headline">¶</a></h2>
+<p>You will need to make sure that you have an up-to-date version of <a class="reference external" href="http://www.lmsal.com/solarsoft/">SolarSoft IDL</a> with the IRIS branch.</p>
+<p>If you already have SolarSoft installed, you just need to make sure to have the IRIS branch installed and include <code class="docutils literal notranslate"><span class="pre">iris</span></code> in the <code class="docutils literal notranslate"><span class="pre">SSW_INSTR</span></code> environment variable, e.g.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">setenv</span> <span class="n">SSW_INSTR</span> <span class="s2">&quot;sot iris ontology&quot;</span>
+</pre></div>
+</div>
+<p>It is outside the scope of these tutorials to help you install and configure SolarSoft. If you don’t have it already in your system we provide a tar file with a minimal version that can be used to run the tutorials. To install it, download the file <a class="reference external" href="http://www.lmsal.com/~mgosic/v1/ssw.zip">http://www.lmsal.com/~mgosic/v1/ssw.zip</a>  (168 MB) and unpack it to your home directory:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cp ssw.zip ~/iris9
+$ cd ~/iris9
+$ unzip ssw.zip
+$ export IRIS_DATA=$HOME/iris9
+$ export SSW_IDL=$HOME/iris9/ssw
+</pre></div>
+</div>
+<p>After that, you can start <cite>idl</cite> (not <cite>sswidl</cite>) and type the following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>IDL&gt; !PATH = Expand_Path(&#39;+$SSW_IDL&#39;) + &#39;:&#39; + !PATH
+IDL&gt; imagelib
+IDL&gt; devicelib
+</pre></div>
+</div>
+<p>If all went well you have SolarSoft working and are ready to run the tutorials!</p>
+<p>If you have your own installation of SolarSoft, start it as usual with <code class="docutils literal notranslate"><span class="pre">sswidl</span></code>.</p>
+</div>
+<div class="section" id="python-setup">
+<h2>2.2. Python Setup<a class="headerlink" href="#python-setup" title="Permalink to this headline">¶</a></h2>
+<p>If you want to run the Python tutorials, you need to have the following packages: <code class="docutils literal notranslate"><span class="pre">numpy</span></code>, <code class="docutils literal notranslate"><span class="pre">scipy</span></code>, <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code>, <code class="docutils literal notranslate"><span class="pre">ipython</span></code>, and <code class="docutils literal notranslate"><span class="pre">astropy</span></code>. The recommended way is to install the <a class="reference external" href="https://www.anaconda.com/download">Anaconda Python Distribution</a> (for Python 3.x, 64-bit version) and then running this command to ensure you have all the packages installed:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ conda install numpy scipy matplotlib ipython astropy
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The Python tutorials are much shorter than the IDL versions, because many of the IRIS tools are not yet available in Python.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="tutorials_idl.html" class="btn btn-neutral float-right" title="3. IDL Tutorials"/>Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="introduction.html" class="btn btn-neutral" title="1. Introduction"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+    </p>
+  </div>
+
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
